@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+    <body>
+    <p>Check the cookies.</p>
+    <p id = "cookieValueParagraph">myCookie value is: </p>
+    <script>
+        let cookie_name = 'myCookie'; 
+        const all_cookies_array = document.cookie.split('; ');
+        const specific_cookie_row = all_cookies_array.find( function(elem){
+        return elem.startsWith(`${cookie_name}=`);
+        })
+        const cookie_kv_array = specific_cookie_row.split('=');
+        const cookie_val = decodeURIComponent(cookie_kv_array[1])
+        document.getElementById("cookieValueParagraph").innerHTML += cookie_val
+    </script>
+    </body>
+</html>

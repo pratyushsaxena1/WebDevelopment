@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Databases</title>
+</head>
+<body>
+  <h2>Assigned Equipment</h2>
+  <ul>
+    <% assignedEquipment.forEach(item => { %>
+      <li>
+        Hero:
+        <% if (item.c_id === 0) { %> Archibald <% } %>
+        <% if (item.c_id === 1) { %> Henrik <% } %>
+        <% if (item.c_id === 2) { %> Isadore <% } %>
+        <% if (item.c_id === 3) { %> Lucinda <% } %>
+        <% if (item.c_id === 4) { %> Dominic <% } %>
+        <% if (item.c_id < 0 || item.hero > 4) { %> Unknown Hero <% } %>,
+        
+        Equipment:
+        <% if (item.e_id === 0) { %> Shield <% } %>
+        <% if (item.e_id === 1) { %> Ring <% } %>
+        <% if (item.e_id === 2) { %> Cloak <% } %>
+        <% if (item.e_id === 3) { %> Sword <% } %>
+        <% if (item.e_id === 4) { %> Potion <% } %>
+        <% if (item.e_id < 0 || item.equipment > 4) { %> Unknown Equipment <% } %>
+      </li>
+    <% }); %>
+  </ul>
+
+  <h2>Assigned Quests</h2>
+  <ul>
+    <% assignedQuests.forEach(item => { %>
+      <li>
+        Hero:
+        <% if (item.c_id === 0) { %> Archibald <% } %>
+        <% if (item.c_id === 1) { %> Henrik <% } %>
+        <% if (item.c_id === 2) { %> Isadore <% } %>
+        <% if (item.c_id === 3) { %> Lucinda <% } %>
+        <% if (item.c_id === 4) { %> Dominic <% } %>
+        <% if (item.c_id < 0 || item.hero > 4) { %> Unknown Hero <% } %>,
+        
+        Quest:
+        <% if (item.q_id === 0) { %> Fight 10 people <% } %>
+        <% if (item.q_id === 1) { %> Defeat 5 people <% } %>
+        <% if (item.q_id === 2) { %> Find 5 apples <% } %>
+        <% if (item.q_id === 3) { %> Get a piece of equipment <% } %>
+        <% if (item.q_id === 4) { %> Play the game for 5 hours <% } %>
+        <% if (item.q_id < 0 || item.quest > 4) { %> Unknown Quest <% } %>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

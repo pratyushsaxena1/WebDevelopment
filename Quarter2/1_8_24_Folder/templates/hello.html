@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+  <h3>Eggs</h3>
+  <p id='eggs'></p>
+  <button type="button" onclick="doTheFetch()">PRESS ME</button>
+
+  <script>
+    async function doTheFetch() {
+        const response = await fetch('http://127.0.0.1/kitchen')
+        const data = await response.json()
+        let counter_span = document.getElementById("eggs")
+        counter_span.innerHTML = data.eggs;
+    }    
+  </script>
+</body>
+</html>

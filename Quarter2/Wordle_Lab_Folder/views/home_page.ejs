@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+    <h3>Wordle</h3>
+    <input type = "text" id = "firstletter" size = "1" style = "text-transform: uppercase"></input>
+    <input type = "text" id = "secondletter" size = "1" style = "text-transform: uppercase"></input>
+    <input type = "text" id = "thirdletter" size = "1" style = "text-transform: uppercase"></input>
+    <input type = "text" id = "fourthletter" size = "1" style = "text-transform: uppercase"></input>
+    <input type = "text" id = "fifthletter" size = "1" style = "text-transform: uppercase"></input>
+    <p id = "possibleWords"></p>
+    <button type = "button" onclick="submit()">Submit</button>
+    <button type = "button" onclick="doTheFetch()">Get Possible Words</button>
+    <script>
+        green_letters = {0: [], 1: [], 2: [], 3: [], 4: []};
+        yellow_letters = {0: [], 1: [], 2: [], 3: [], 4: []};
+        function submit() {
+            var final_word = "BLANK"; //Word you're trying to guess
+            var firstLetter = document.getElementById("firstletter").value.toUpperCase();
+            var secondLetter = document.getElementById("secondletter").value.toUpperCase();
+            var thirdLetter = document.getElementById("thirdletter").value.toUpperCase();
+            var fourthLetter = document.getElementById("fourthletter").value.toUpperCase();
+            var fifthLetter = document.getElementById("fifthletter").value.toUpperCase();
+            if (firstLetter === final_word.charAt(0)) {
+                green_letters[0].push(firstLetter);
+                document.getElementById("firstletter").style.backgroundColor = "lightgreen";
+            }
+            else if (final_word.includes(firstLetter)) {
+                yellow_letters[0].push(firstLetter);
+                document.getElementById("firstletter").style.backgroundColor = "yellow";
+            }
+            else if (!final_word.includes(firstLetter)) {
+                document.getElementById("firstletter").style.backgroundColor = "gray";
+            }
+            else {
+                document.getElementById("firstletter").style.backgroundColor = "white";
+            }
+            if (secondLetter === final_word.charAt(1)) {
+                green_letters[1].push(secondLetter);
+                document.getElementById("secondletter").style.backgroundColor = "lightgreen";
+            }
+            else if (final_word.includes(secondLetter)) {
+                yellow_letters[1].push(secondLetter);
+                document.getElementById("secondletter").style.backgroundColor = "yellow";
+            }
+            else if (!final_word.includes(secondLetter)) {
+                document.getElementById("secondletter").style.backgroundColor = "gray";
+            }
+            else {
+                document.getElementById("secondletter").style.backgroundColor = "gray";
+            }
+            if (thirdLetter === final_word.charAt(2)) {
+                green_letters[2].push(thirdLetter);
+                document.getElementById("thirdletter").style.backgroundColor = "lightgreen";
+            }
+            else if (final_word.includes(thirdLetter)) {
+                yellow_letters[2].push(thirdLetter);
+                document.getElementById("thirdletter").style.backgroundColor = "yellow";
+            }
+            else if (!final_word.includes(thirdLetter)) {
+                document.getElementById("thirdletter").style.backgroundColor = "gray";
+            }
+            else {
+                document.getElementById("thirdletter").style.backgroundColor = "gray";
+            }
+            if (fourthLetter === final_word.charAt(3)) {
+                green_letters[3].push(fourthLetter);
+                document.getElementById("fourthletter").style.backgroundColor = "lightgreen";
+            }
+            else if (final_word.includes(fourthLetter)) {
+                yellow_letters[3].push(fourthLetter);
+                document.getElementById("fourthletter").style.backgroundColor = "yellow";
+            }
+            else if (!final_word.includes(fourthLetter)) {
+                document.getElementById("fourthletter").style.backgroundColor = "gray";
+            }
+            else {
+                document.getElementById("fourthletter").style.backgroundColor = "gray";
+            }
+            if (fifthLetter === final_word.charAt(4)) {
+                green_letters[4].push(fifthLetter);
+                document.getElementById("fifthletter").style.backgroundColor = "lightgreen";
+            }
+            else if (final_word.includes(fifthLetter)) {
+                yellow_letters[4].push(fifthLetter);
+                document.getElementById("fifthletter").style.backgroundColor = "yellow";
+            }
+            else if (!final_word.includes(fifthLetter)) {
+                document.getElementById("fifthletter").style.backgroundColor = "gray";
+            }
+            else {
+                document.getElementById("fifthletter").style.backgroundColor = "gray";
+            }
+        }
+        async function doTheFetch() {
+            const response = await fetch(`http://localhost:8080/getPossibleWords/${JSON.stringify(green_letters)}/${JSON.stringify(yellow_letters)}`);
+            const data = await response.json();
+            let counter_span = document.getElementById("possibleWords");
+            counter_span.innerHTML = data;
+        }
+    </script>
+</body>
+</html>
