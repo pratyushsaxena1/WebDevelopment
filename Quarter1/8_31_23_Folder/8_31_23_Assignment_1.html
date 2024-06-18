@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <h1>Hey, this is Tic Tac Toe from console.</h1>
+    <script>
+        let gameState = {
+            "gameBoard": [['', '', ''], ['', '', ''], ['', '', '']],
+            "gameWinner": 0,
+            "playerTurn": 0
+        }
+
+        function playerMove(piece, location) {
+            let board = gameState["gameBoard"];
+            board[location[0]][location[1]] = piece;
+            gameState["playerTurn"] = 1 - gameState["playerTurn"];
+        }
+
+        function checkWin() {
+            let board = gameState["gameBoard"];
+
+            // Check rows and columns
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                    gameState["gameWinner"] = (board[i][0] === 'x') ? 1 : 2;
+                    return;
+                }
+                if (board[0][i] && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                    gameState["gameWinner"] = (board[0][i] === 'x') ? 1 : 2;
+                    return;
+                }
+            }
+
+            // Check diagonals
+            if (board[0][0] && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+                gameState["gameWinner"] = (board[0][0] === 'x') ? 1 : 2;
+                return;
+            }
+            if (board[0][2] && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+                gameState["gameWinner"] = (board[0][2] === 'x') ? 1 : 2;
+                return;
+            }
+
+            // If no winner, check for a draw
+            let isDraw = true;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') {
+                        isDraw = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isDraw) {
+                gameState["gameWinner"] = 0; // Game is a draw
+            }
+        }
+
+        function reset() {
+            gameState = {
+                "gameBoard": [[['', '', ''], ['', '', ''], ['', '', '']]],
+                "gameWinner": 0,
+                "playerTurn": 0
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    <!DOCTYPE html>
+<html>
+    <h1>Hey, this is Tic Tac Toe from console.</h1>
+<script>
+    let gameOver = false
+    let player1Win = false
+    let player2Win = false
+    let playerTurn = 1
+
+    let gameState = [
+        [], [], [],
+        [], [], [],
+        [], [], []
+    ]
+    
+    while (gameOver == false) {
+        let location = [0,0]
+        if (playerTurn == 1) {
+            location = prompt("Please select a location in the form of [column, row]: ")
+            playerMove('x', [location[0], location[1]])
+            playerTurn = 2
+        }
+        else {
+            location = prompt("Please select a location in the form of [column, row]: ")
+            playerMove('o', [location[1], location[4]])
+            playerTurn = 1
+        }
+        function playerMove(piece, location) {
+            gameState[location[0], location[1]] = piece
+        }
+        if (player1Win == true) {
+            console.log("Player 1 wins!")
+        }
+
+        if (player2Win == true) {
+            console.log("Player 2 wins!")
+        }
+        function checkWin() {
+            //Horizontal win
+            for (let i = 0; i <= 2; i++) {
+                if (gameState[location[i], location[1]] == 'x' && gameState[location[i], location[1]] == gameState[location[i], location[2]] && gameState[location[i], location[2]] == gameState[location[i], location[3]]) {
+                    player1Win = true
+                    gameOver = true
+                }
+            }
+            for (let i = 0; i <= 2; i++) {
+                if (gameState[location[i], location[1]] == 'o' && gameState[location[i], location[1]] == gameState[location[i], location[2]] && gameState[location[i], location[2]] == gameState[location[i], location[3]]) {
+                    player2Win = true
+                    gameOver = true
+                }
+            }
+            //Vertical win
+            for (let i = 0; i <= 2; i++) {
+                if (gameState[location[0], location[i]] == 'x' && gameState[location[0], location[i]] == gameState[location[1], location[i]] && gameState[location[1], location[i]] == gameState[location[2], location[i]]) {
+                    player1Win = true
+                    gameOver = true
+                }
+            }
+            for (let i = 0; i <= 2; i++) {
+                if (gameState[location[0], location[i]] == 'o' && gameState[location[0], location[i]] == gameState[location[1], location[i]] && gameState[location[1], location[i]] == gameState[location[2], location[i]]) {
+                    player2Win = true
+                    gameOver = true
+                }
+            }
+            //Diagnol win
+            if (gameState[location[0], location[0]] == 'x' && gameState[location[0], location[0]] == gameState[location[1], location[1]] && gameState[location[1], location[1]] == gameState[location[2], location[2]]) {
+                player1Win = true
+                gameOver = true
+            }
+            if (gameState[location[0], location[2]] == 'x' && gameState[location[0], location[2]] == gameState[location[1], location[1]] && gameState[location[1], location[1]] == gameState[location[2], location[0]]) {
+                player1Win = true
+                gameOver = true
+            }
+            if (gameState[location[0], location[0]] == 'o' && gameState[location[0], location[0]] == gameState[location[1], location[1]] && gameState[location[1], location[1]] == gameState[location[2], location[2]]) {
+                player2Win = true
+                gameOver = true
+            }
+            if (gameState[location[0], location[2]] == 'o' && gameState[location[0], location[2]] == gameState[location[1], location[1]] && gameState[location[1], location[1]] == gameState[location[2], location[0]]) {
+                player2Win = true
+                gameOver = true
+            }
+        }
+    }
+
+    function reset() {
+        gameState = [
+            [], [], [],
+            [], [], [],
+            [], [], []
+        ]
+    }
+
+</script>
+</html>
+-->

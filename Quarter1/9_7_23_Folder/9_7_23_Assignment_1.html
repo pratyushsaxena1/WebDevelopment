@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p id = "firstP">This is the first paragraph.</p>
+        <p id = "secondP">This is the second paragraph.</p>
+        <p id = "thirdP">This is the third paragraph.</p>
+        <p id = "fourthP">This is the fourth paragraph.</p>
+        <p id = "fifthP">This is the fifth paragraph.</p>
+    </body>
+    <script>
+        let firstParagraph = document.getElementById('firstP');
+        firstParagraph.onclick = function() {
+            firstParagraph.style.backgroundColor = 'lightgreen';
+        }
+
+        let secondParagraph = document.querySelector('#secondP');
+        secondParagraph.onclick = function() {
+            secondParagraph.style.backgroundColor = 'red';
+        }
+
+        let thirdParagraph = document.querySelector('#thirdP');
+        const clickThirdParagraph = function() {
+            thirdParagraph.style.backgroundColor = 'lightblue';
+        }
+        thirdParagraph.addEventListener("click", clickThirdParagraph);
+
+        colorTracker = 0;
+        let fourthParagraph = document.querySelector('#fourthP');
+        const clickFourthParagraph = function() {
+            if (colorTracker == 0) {
+                fourthParagraph.style.backgroundColor = 'purple';
+                colorTracker = 1;
+            }
+            else {
+                fourthParagraph.style.backgroundColor = 'green';
+                colorTracker = 0;
+            }
+        }
+        fourthParagraph.addEventListener("click", clickFourthParagraph);
+
+        document.querySelector("#fifthP").onclick = evFunction;
+        function evFunction(ev) {
+            console.log(ev);
+        }
+    </script>
+</html>

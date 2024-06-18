@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <header>This is the first header.</header>
+        <header>This is the second header.</header>
+        <header>This is the third header.</header>
+        <header>This is the fourth header.</header>
+        <header>This is the fifth header.</header>
+
+        <p>This is the first paragraph.</p>
+        <p>This is the second paragraph.</p>
+        <p>This is the third paragraph.</p>
+        <p>This is the fourth paragraph.</p>
+        <p>This is the fifth paragraph.</p>
+    </body>
+    <script>
+        let headers = document.querySelectorAll('header');
+        headers.forEach(function(myHeader) {
+            myHeader.addEventListener('click', function() {
+                for (let i = 0; i < headers.size; i++) {
+                    headers[i].style.backgroundColor = 'lightblue';
+                    console.log(i)
+                }
+            })
+        })
+
+        let paragraphs = document.querySelectorAll('p');
+        paragraphs.forEach(function(myParagraph) {
+            myParagraph.addEventListener('click', function() {
+                myParagraph.style.backgroundColor = 'lightgreen';
+            });
+        });
+    </script>
+</html>

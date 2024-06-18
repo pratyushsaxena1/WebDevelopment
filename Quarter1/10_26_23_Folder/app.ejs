@@ -1,0 +1,25 @@
+let https = require('https')
+
+let url = 'https://api.weather.gov/gridpoints/LWX/92,67/forecast'
+
+let options = { 
+  headers : {
+    'User-Agent': 'my request value that you should change'
+  }
+}
+
+https.get(url, options, (response) => {
+  let aggregatedResponseString = '';
+
+  response.on('data', (chunk) => {
+    aggregatedResponseString += chunk;
+  });
+
+  response.on('end', () => {
+    let data = JSON.parse(aggregatedResponseString);
+    weather_array = data["properties"]["periods"][0];
+    for (let dataPoint in weather_array) {
+      console.log(dataPoint + ": " + weather_array[dataPoint])
+    }
+  });
+})

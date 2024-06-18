@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Croissant+One&family=Montserrat&family=Raleway&display=swap');
+
+h1 {
+    text-align: center;
+    font-size: 5em;
+    margin-top: 1vh;
+    font-family: 'Croissant One', cursive;
+}
+
+h2 {
+    text-align: center;
+    font-size: 3.5em;
+    margin-top: -5vh;
+}
+
+h3 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: -2vh;
+}
+
+#main_div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#text_div {
+    width: 100%;
+}
+
+a {
+    font-size: 3em;
+}
+
+.scene {
+    font-style: italic;
+    margin-bottom: 2em;
+}
+
+.name {
+    text-align: left;
+    font-weight: bold;
+}
+
+.dialogue {
+    margin-bottom: 2em;
+}

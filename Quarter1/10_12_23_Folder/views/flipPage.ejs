@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  The Flip Page
+</head>
+
+<body>
+<div>
+    Your coin is being flipped.
+    <% if(heads_true_var){%>
+        <script>return res.redirect("/winFlipPage");</script>
+    <%}
+    else{%>
+        <script>return res.redirect("/loseFlipPage");</script>
+    <%}%>
+</div>

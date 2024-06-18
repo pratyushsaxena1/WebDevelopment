@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast</title>
+  <link rel="stylesheet" type="text/css" href="/../appCSS.css" />
+</head>
+<body>
+  <h1>Weather Forecast</h1>
+  <script>
+    myResult['properties']['periods'].forEach(function (item, index) {
+      console.log(item, index)
+    })
+
+  </script>
+  <p>Temperature (Fahrenheit): <%=myResult['properties']['periods'][0]['temperature']%></p>
+  <p>Humidity: <%=myResult['properties']['periods'][0]['relativeHumidity']['value']%>%</p>
+  <p>Probability of Precipitation: <%=myResult['properties']['periods'][0]['probabilityOfPrecipitation']['value']%>%</p>
+  <p>Dewpoint: <%=myResult['properties']['periods'][0]['dewpoint']['value']%>%</p>
+  <p>Wind: <%=myResult['properties']['periods'][0]['windSpeed']%> <%=myResult['properties']['periods'][0]['windDirection']%></p>
+  <br>
+  <button id = "backtopage2" onclick="location.href = '../'">Weather Form</button>
+</body>
+</html>

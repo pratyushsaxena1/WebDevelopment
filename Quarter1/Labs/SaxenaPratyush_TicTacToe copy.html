@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic Tac Toe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&family=Raleway&display=swap');
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        svg {
+            width: 400px;
+            height: 400px;
+        }
+
+        #mainHeader {
+            position: absolute;
+            margin: auto;
+            top: 3vh;
+            font-size: 8vh;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        #gameWinNumber {
+            position: absolute;
+            margin: auto;
+            top: 14vh;
+            font-size: 4vh;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        #playAgain {
+            position: absolute;
+            margin: auto;
+            bottom: 10vh;
+            font-size: 6vh;
+            display: none;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <header id = "mainHeader">Tic Tac Toe</header>
+    <p id = "gameWinNumber"></p>
+    <svg>
+        <!-- Vertical Board Lines -->
+        <line x1="133.33" y1="0" x2="133.33" y2="400" stroke="black" stroke-width="5" />
+        <line x1="266.67" y1="0" x2="266.67" y2="400" stroke="black" stroke-width="5" />
+
+        <!-- Horizontal Board Lines -->
+        <line x1="0" y1="133.33" x2="400" y2="133.33" stroke="black" stroke-width="5" />
+        <line x1="0" y1="266.67" x2="400" y2="266.67" stroke="black" stroke-width="5" />
+        
+        <!-- Square 1 -->
+        <rect id="square1" width="132" height="132" onclick="makePlayerMove(0, 0, 1)" style="fill:white; stroke-width:3; transform: translate(0vh, 0vh);"/>
+        <image id = "X1" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(0vh, 0vh); z-index: 1; display: none"></image>
+        <image id = "O1" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(0vh, 0vh); z-index: 1; display: none"></image>
+
+        <!-- Square 2 -->
+        <rect id="square2"  width="132" height="132" onclick="makePlayerMove(0, 1, 2)" style="fill:white; stroke-width:3; transform: translate(16.5vh, 0vh)"/>
+        <image id = "X2" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(17vh, 0vh); z-index: 1; display: none"></image>
+        <image id = "O2" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(17vh, 0vh); z-index: 1; display: none"></image>
+
+        <!-- Square 3 -->
+        <rect id="square3"  width="132" height="132" onclick="makePlayerMove(0, 2, 3)" style="fill:white; stroke-width:3; transform: translate(33vh, 0vh)"/>
+        <image id = "X3" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(34vh, 0vh); z-index: 1; display: none"></image>
+        <image id = "O3" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(34vh, 0vh); z-index: 1; display: none"></image>
+
+        <!-- Square 4 -->
+        <rect id="square4"  width="132" height="132" onclick="makePlayerMove(1, 0, 4)" style="fill:white; stroke-width:3; transform: translate(0vh, 16.5vh)"/>
+        <image id = "X4" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(0vh, 17vh); z-index: 1; display: none"></image>
+        <image id = "O4" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(0vh, 17vh); z-index: 1; display: none"></image>
+
+        <!-- Square 5 -->
+        <rect id="square5"  width="132" height="132" onclick="makePlayerMove(1, 1, 5)" style="fill:white; stroke-width:3; transform: translate(16.5vh, 16.5vh)"/>
+        <image id = "X5" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(17vh, 17vh); z-index: 1; display: none"></image>
+        <image id = "O5" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(17vh, 17vh); z-index: 1; display: none"></image>
+
+        <!-- Square 6 -->
+        <rect id="square6"  width="132" height="132" onclick="makePlayerMove(1, 2, 6)" style="fill:white; stroke-width:3; transform: translate(33vh, 16.5vh)"/>
+        <image id = "X6" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(34vh, 17vh); z-index: 1; display: none"></image>
+        <image id = "O6" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(34vh, 17vh); z-index: 1; display: none"></image>
+
+        <!-- Square 7 -->
+        <rect id="square7"  width="132" height="132" onclick="makePlayerMove(2, 0, 7)" style="fill:white; stroke-width:3; transform: translate(0vh, 33vh)"/>
+        <image id = "X7" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(0vh, 34vh); z-index: 1; display: none"></image>
+        <image id = "O7" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(0vh, 34vh); z-index: 1; display: none"></image>
+
+        <!-- Square 8 -->
+        <rect id="square8"  width="132" height="132" onclick="makePlayerMove(2, 1, 8)" style="fill:white; stroke-width:3; transform: translate(16.5vh, 33vh)"/>
+        <image id = "X8" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(17vh, 34vh); z-index: 1; display: none"></image>
+        <image id = "O8" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(17vh, 34vh); z-index: 1; display: none"></image>
+
+        <!-- Square 9 -->
+        <rect id="square9"  width="132" height="132" onclick="makePlayerMove(2, 2, 9)" style="fill:white; stroke-width:3; transform: translate(33vh, 33vh)"/>
+        <image id = "X9" href = "x-symbol-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(34vh, 34vh); z-index: 1; display: none"></image>
+        <image id = "O9" href = "circle-svgrepo-com.svg" height = "15vh" width = "15vh" style = "transform: translate(34vh, 34vh); z-index: 1; display: none"></image>
+    </svg>
+    <button id = "playAgain" onclick = "resetBoard()">Play Again</button>
+    <script>
+        gameState = {
+            "gameBoard": [['', '', ''], ['', '', ''], ['', '', '']],
+            "gameWinner": 0,
+            "playerTurn": 1
+        }
+
+        function makePlayerMove(row_coord, column_coord, square_num) {
+            let board = gameState["gameBoard"];
+            if (gameState["playerTurn"] == 1) {
+                board[row_coord][column_coord] = 'x';
+                gameState["playerTurn"] = 2;
+                if (square_num == 1) {
+                    document.getElementById("X1").style.display = "initial";
+                }
+                else if (square_num == 2) {
+                    document.getElementById("X2").style.display = "initial";
+                }
+                else if (square_num == 3) {
+                    document.getElementById("X3").style.display = "initial";
+                }
+                else if (square_num == 4) {
+                    document.getElementById("X4").style.display = "initial";
+                }
+                else if (square_num == 5) {
+                    document.getElementById("X5").style.display = "initial";
+                }
+                else if (square_num == 6) {
+                    document.getElementById("X6").style.display = "initial";
+                }
+                else if (square_num == 7) {
+                    document.getElementById("X7").style.display = "initial";
+                }
+                else if (square_num == 8) {
+                    document.getElementById("X8").style.display = "initial";
+                }
+                else if (square_num == 9) {
+                    document.getElementById("X9").style.display = "initial";
+                }
+            }
+            else {
+                board[row_coord][column_coord] = 'o';
+                gameState["playerTurn"] = 1;
+                if (square_num == 1) {
+                    document.getElementById("O1").style.display = "initial";
+                }
+                else if (square_num == 2) {
+                    document.getElementById("O2").style.display = "initial";
+                }
+                else if (square_num == 3) {
+                    document.getElementById("O3").style.display = "initial";
+                }
+                else if (square_num == 4) {
+                    document.getElementById("O4").style.display = "initial";
+                }
+                else if (square_num == 5) {
+                    document.getElementById("O5").style.display = "initial";
+                }
+                else if (square_num == 6) {
+                    document.getElementById("O6").style.display = "initial";
+                }
+                else if (square_num == 7) {
+                    document.getElementById("O7").style.display = "initial";
+                }
+                else if (square_num == 8) {
+                    document.getElementById("O8").style.display = "initial";
+                }
+                else if (square_num == 9) {
+                    document.getElementById("O9").style.display = "initial";
+                }
+            }
+            checkWin();
+        }
+
+        function checkWin() {
+            let board = gameState["gameBoard"];
+
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] == 'x' && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                    gameState["gameWinner"] = 1;
+                }
+                else if (board[0][i] == 'x' && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                    gameState["gameWinner"] = 1
+                }
+                else if (board[i][0] == 'o' && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                    gameState["gameWinner"] = 2;
+                }
+                else if (board[0][i] == 'o' && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                    gameState["gameWinner"] = 2
+                }
+            }
+
+            if (board[0][0] == 'x' && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+                gameState["gameWinner"] = 1
+            }
+            else if (board[0][2] == 'x' && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+                gameState["gameWinner"] = 1
+            }
+            else if (board[0][0] == 'o' && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+                gameState["gameWinner"] = 2
+            }
+            else if (board[0][2] == 'o' && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+                gameState["gameWinner"] = 2
+            }
+
+            let isDraw = true;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '' || gameState["gameWinner"] != 1 || gameState["gameWinner"] != 2) {
+                        isDraw = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isDraw) {
+                gameState["gameWinner"] = 0;
+                document.getElementById("gameWinNumber").innerHTML = "It's a tie.";
+                document.getElementById("playAgain").style.display = "initial";
+            }
+            else if (gameState["gameWinner"] == 1) {
+                document.getElementById("gameWinNumber").innerHTML = "Congratulations! Player 1 wins!";
+                document.getElementById("playAgain").style.display = "initial";
+            }
+            else if (gameState["gameWinner"] == 2) {
+                document.getElementById("gameWinNumber").innerHTML = "Congratulations! Player 2 wins!";
+                document.getElementById("playAgain").style.display = "initial";
+            }
+        }
+
+        function resetBoard() {
+            gameState = {
+                "gameBoard": [['', '', ''], ['', '', ''], ['', '', '']],
+                "gameWinner": 0,
+                "playerTurn": 1
+            }
+            document.getElementById("gameWinNumber").innerHTML = "";
+            document.getElementById("playAgain").style.display = "none";
+            document.getElementById("X1").style.display = "none";
+            document.getElementById("X2").style.display = "none";
+            document.getElementById("X3").style.display = "none";
+            document.getElementById("X4").style.display = "none";
+            document.getElementById("X5").style.display = "none";
+            document.getElementById("X6").style.display = "none";
+            document.getElementById("X7").style.display = "none";
+            document.getElementById("X8").style.display = "none";
+            document.getElementById("X9").style.display = "none";
+            document.getElementById("O1").style.display = "none";
+            document.getElementById("O2").style.display = "none";
+            document.getElementById("O3").style.display = "none";
+            document.getElementById("O4").style.display = "none";
+            document.getElementById("O5").style.display = "none";
+            document.getElementById("O6").style.display = "none";
+            document.getElementById("O7").style.display = "none";
+            document.getElementById("O8").style.display = "none";
+            document.getElementById("O9").style.display = "none";
+        }
+    </script>
+</body>
+</html>
