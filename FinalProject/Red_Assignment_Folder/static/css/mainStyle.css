@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Croissant+One&family=Montserrat&family=Raleway&family=Rubik&display=swap');
+
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+header {
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    font-size: 4em;
+}
+
+a {
+    font-family: 'Rubik', sans-serif;
+    background-color:gray;
+    color: black;
+    border-color: white;
+    border-width: 0.1em;
+    font-size: 1em;
+    text-align: center;
+    width: 28vw;
+    padding: 1em;
+    margin-top: 20vh;
+    margin-left: 1vw;
+}
+
+.mainbuttonlinks {
+    font-family: 'Rubik', sans-serif;
+    background-color:gray;
+    color: black;
+    border-color: white;
+    border-width: 0.1em;
+    font-size: 1em;
+    text-align: center;
+    width: 28vw;
+    padding: 1em;
+    display: block;
+    margin-top: 5vh;
+    margin-left: 34vw;
+}
+
+.backbutton {
+    font-family: 'Rubik', sans-serif;
+    background-color:gray;
+    color: black;
+    border-color: white;
+    border-width: 0.1em;
+    font-size: 1em;
+    text-align: center;
+    width: 10vw;
+    padding: 1em;
+    position: absolute;
+    margin-top: -9vh;
+    margin-left: -22vw;
+}
+
+.backbutton2 {
+    font-family: 'Rubik', sans-serif;
+    background-color:gray;
+    color: black;
+    border-color: white;
+    border-width: 0.1em;
+    font-size: 1em;
+    text-align: center;
+    width: 10vw;
+    padding: 1em;
+    position: absolute;
+    margin-top: -9vh;
+    margin-left: -49vw;
+}
+
+form {
+    font-family: 'Rubik', sans-serif;
+    display: inline-block;
+    color: white;
+    font-size: 3em;
+    text-align: justify;
+    margin-top: 10vh;
+}
+
+input[type = text] {
+    height: 5vh;
+    width: 40vw;
+    font-size: 0.5em;
+}
+
+input[type = password] {
+    height: 5vh;
+    width: 40vw;
+    font-size: 0.5em;
+}
+
+input[type = submit] {
+    height: 5vh;
+    width: 10vw;
+    font-size: 0.5em;
+    margin-left: 24vw;
+    text-align: center;
+}

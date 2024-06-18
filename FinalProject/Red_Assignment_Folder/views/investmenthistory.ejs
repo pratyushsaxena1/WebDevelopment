@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href = "/css/mainStyle.css">
+    </head>
+    <body>
+        <div>
+            <header>Investment History</header>
+            <button class = "backbutton2" onclick = history.back()>Back</button>
+            <p>Stock | Amount</p>
+            <% stocks.forEach(stock => { %>
+                <%= stock.stock %> | <%= stock.amount %> <br>
+            <% }); %>
+        </div>
+    </body>
+</html>

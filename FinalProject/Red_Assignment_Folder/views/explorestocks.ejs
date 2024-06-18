@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/mainStyle.css">
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-top: 20px;
+                color: white;
+            }
+
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                color: black;
+            }
+
+            td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                color: white;
+            } 
+
+            th {
+                background-color: #f2f2f2;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <header>Explore Stocks</header>
+            <button class = "backbutton2" onclick = history.back()>Back</button>
+            <p>Note: It may take a moment to retrieve the stock information and populate the table.</p>
+            <p id="inputText">Enter a stock symbol (for instance, AAPL for Apple): 
+                <input type="text" id="userInput" onkeydown="handleKeyDown(event)">
+            </p>
+            <table id="stockTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Open</th>
+                        <th>High</th>
+                        <th>Low</th>
+                        <th>Close</th>
+                        <th>Adj Close</th>
+                        <th>Volume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <script>
+                function handleKeyDown(event) {
+                    if (event.key === 'Enter') {
+                        const userInput = document.getElementById('userInput').value;
+                        fetch(`/runPythonScript?symbol=${userInput}`)
+                            .then(response => response.text())
+                            .then(data => {
+                                const start = data.indexOf("[{");
+                                const end = data.lastIndexOf("}]") + 2;
+                                if (start !== -1 && end !== -1) {
+                                    const jsonData = data.substring(start, end);
+                                    const cleanedJsonData = jsonData.replace(/'/g, '"');
+                                    console.log(`Cleaned JSON: ${cleanedJsonData}`);
+                                    try {
+                                        const parsedData = JSON.parse(cleanedJsonData);
+                                        console.log(`Server response: ${JSON.stringify(parsedData)}`);
+                                        populateTable(parsedData);
+                                    } catch (parseError) {
+                                        console.error(`JSON parse error: ${parseError}`);
+                                    }
+                                } else {
+                                    console.error("Invalid JSON in the server response");
+                                    console.log(`Server response: ${data}`);
+                                }
+                            })
+                            .catch(error => {
+                                console.error(`Fetch error: ${error}`);
+                            });
+                        document.getElementById('userInput').value = '';
+                        event.preventDefault();
+                    }
+                }
+                function populateTable(data) {
+                    const tableBody = document.querySelector('#stockTable tbody');
+                    tableBody.innerHTML = '';
+
+                    for (let i = 0; i < data.length; i++) {
+                        const newRow = document.createElement('tr');
+                        for (const key in data[i]) {
+                            const cell = document.createElement('td');
+                            cell.textContent = data[i][key];
+                            newRow.appendChild(cell);
+                        }
+                        tableBody.appendChild(newRow);
+                    }
+                }
+            </script>
+        </div>
+    </body>
+</html>
